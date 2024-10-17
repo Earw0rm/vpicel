@@ -8,16 +8,17 @@
 #include <glm/mat4x4.hpp>
 
 #include <iostream>
-#include "window.hpp"
+#include "application.hpp"
 
-int main(int argc, char const *argv[])
-{
-    dirt::Window window{1024, 2048, "VW"};
-    while(!window.should_close()){
-        window.poll_events();
+int main(int argc, char const *argv[]){
+    dirt::Application app{};
+
+    try{
+        app.run();
+    }catch(const std::exception& e){
+        std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
     }
 
-
-
-    return 0;
+    return EXIT_SUCCESS;
 }
